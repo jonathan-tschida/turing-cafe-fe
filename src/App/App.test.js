@@ -3,8 +3,19 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from './App';
 
+import { getReservations, postReservation, deleteReservation } from '../apiCalls.js';
+jest.mock('../apiCalls.js');
+
 describe('App', () => {
   it('adds a new reservation when the form is filled out', async () => {
+    getReservations.mockResolvedValueOnce([]);
+    postReservation.mockResolvedValueOnce({
+       id: 18939837,
+       name: 'Jonathan',
+       date: '4/17',
+       time: '7:00',
+       number: 2
+    });
     const { getByText, getByPlaceholderText } = render(
       <App />
     )
@@ -15,7 +26,7 @@ describe('App', () => {
     fireEvent.change(getByPlaceholderText('Number of Guests'), { target: { value: '2' } });
     fireEvent.click(getByText('Make Reservation'));
 
-    await waitFor(() => getByText('Jonathan'));
+    await waitFor(() => expect(postReservation).toHaveBeenCalled());
     expect(getByText('Jonathan')).toBeInTheDocument();
     expect(getByText('4/17')).toBeInTheDocument();
     expect(getByText('7:00')).toBeInTheDocument();

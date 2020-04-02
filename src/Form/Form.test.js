@@ -3,6 +3,9 @@ import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Form from './Form';
 
+import { postReservation } from '../apiCalls.js';
+jest.mock('../apiCalls.js');
+
 describe('Form', () => {
   it('renders correctly', () => {
     const { getByPlaceholderText, getByText } = render(
