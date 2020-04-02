@@ -12,3 +12,5 @@ const Reservation = (props) => {
     </article>
   )
 }
+
+export default Reservation;
