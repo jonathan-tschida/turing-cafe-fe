@@ -21,7 +21,18 @@
 button {
   background-color: teal;
   color: white;
-  border: 1px outset #D8D8D8;
+  border: 2px outset #D8D8D8;
   font-size: 1.2em;
   width: 10em;
+}
+
+.resy-form {
+  width: 90%;
+}
+
+.resy-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 10px;
 }
