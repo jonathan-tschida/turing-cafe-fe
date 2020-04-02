@@ -31,6 +31,19 @@ class App extends Component {
       .then(data => {
         this.setState({ reservations: [...reservations, data] });
       })
+      .catch(error => console.error(error.message))
+  }
+
+  deleteReservation = (event) => {
+    fetch('http://localhost:3001/api/v1/reservations/' + event.target.id, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ reservations: data }))
+      .catch(error => console.error(error.message))
   }
 
   render() {
@@ -46,6 +59,7 @@ class App extends Component {
               <Reservation
                 key={reservation.id}
                 {...reservation}
+                deleteReservation={this.deleteReservation}
               />
             ))
           }
