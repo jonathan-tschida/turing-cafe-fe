@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   render() {
+    const { reservations } = this.state;
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
@@ -25,7 +26,7 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-
+          {reservations.map(reservation => (<Reservation key={reservation.id} {...reservation}/>))}
         </div>
       </div>
     )
