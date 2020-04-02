@@ -9,7 +9,7 @@ const Reservation = (props) => {
       <p>{date}</p>
       <p>{time}</p>
       <p>Number of Guests: {number}</p>
-      <button id={id} onClick={props.deleteReservation}>Cancel</button>
+      <button id={id} onClick={props.cancelReservation}>Cancel</button>
     </article>
   )
 }

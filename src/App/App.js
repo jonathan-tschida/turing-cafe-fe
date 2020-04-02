@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Reservation from '../Reservation/Reservation.js';
+import { getReservations, postReservation, deleteReservation } from '../apiCalls.js';
 import Form from '../Form/Form.js';
 import './App.css';
 
@@ -12,36 +13,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/reservations')
-      .then(response => response.json())
+    getReservations()
       .then(data => this.setState({ reservations: data }))
       .catch(error => console.error(error.message))
   }
 
   addReservation = (newResy) => {
     const { reservations } = this.state;
-    fetch('http://localhost:3001/api/v1/reservations', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newResy)
-    })
-      .then(response => response.json())
+    postReservation(newResy)
       .then(data => {
         this.setState({ reservations: [...reservations, data] });
       })
       .catch(error => console.error(error.message))
   }
 
-  deleteReservation = (event) => {
-    fetch('http://localhost:3001/api/v1/reservations/' + event.target.id, {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => response.json())
+  cancelReservation = (event) => {
+    deleteReservation(event.target.id)
       .then(data => this.setState({ reservations: data }))
       .catch(error => console.error(error.message))
   }
@@ -59,7 +46,7 @@ class App extends Component {
               <Reservation
                 key={reservation.id}
                 {...reservation}
-                deleteReservation={this.deleteReservation}
+                cancelReservation={this.cancelReservation}
               />
             ))
           }
