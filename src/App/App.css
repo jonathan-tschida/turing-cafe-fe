@@ -17,3 +17,11 @@
   font-family: 'Pacifico', cursive;
   font-size: 50px;
 }
+
+button {
+  background-color: teal;
+  color: white;
+  border: 1px outset #D8D8D8;
+  font-size: 1.2em;
+  width: 10em;
+}
