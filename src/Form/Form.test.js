@@ -18,9 +18,7 @@ describe('Form', () => {
 
   it('calls the right function when making a reservation', () => {
     const mockMakeReservation = jest.fn();
-    Date.now = jest.fn().mockImplementation(() => 1584585306565);
     const mockResy = {
-      id: Date.now(),
       name: 'Jonathan',
       date: '4/17',
       time: '7:00',
