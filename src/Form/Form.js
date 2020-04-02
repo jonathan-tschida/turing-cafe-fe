@@ -22,7 +22,6 @@ class Form extends Component {
     event.preventDefault();
     const { name, date, time, number } = this.state;
     const newResy = {
-      id: Date.now(),
       name,
       date,
       time,
