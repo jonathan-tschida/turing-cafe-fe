@@ -26,7 +26,7 @@ class Form extends Component {
       name,
       date,
       time,
-      number
+      number: Number(number)
     }
     this.props.addReservation(newResy);
     this.setState({ name: '', date: '', time: '', number: ''})
